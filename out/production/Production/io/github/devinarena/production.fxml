@@ -1,0 +1,19 @@
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+
+<?import java.net.URL?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane fx:controller="io.github.devinarena.Controller"
+  xmlns:fx="http://javafx.com/fxml">
+  <top>
+    <TabPane fx:id="mainpane">
+      <Tab fx:id="proline" text="Product Line"></Tab>
+      <Tab fx:id="produce" text="Produce"></Tab>
+      <Tab fx:id="prodlog" text="Production Log"></Tab>
+    </TabPane>
+  </top>
+  <stylesheets>
+    <URL value="@production_style.css" />
+  </stylesheets>
+</BorderPane>
