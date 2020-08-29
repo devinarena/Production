@@ -1,0 +1,34 @@
+.root {
+  -fx-font-family: Arial Sans-Serif Serif;
+  -fx-background-color: #000;
+}
+
+.tab-pane *.tab-header-area *.tab-header-background {
+  -fx-background-color: transparent;
+}
+
+.tab {
+  -fx-background-color: -fx-background;
+  -fx-background: #000;
+  -fx-padding: 8px;
+  -fx-border-style: solid;
+  -fx-border-width: 2px;
+  -fx-border-color: #000;
+  -fx-border-radius: 9px;
+  -fx-background-radius: 10px;
+}
+
+.tab-label {
+  -fx-text-fill: #fff;
+}
+
+.tab:hover {
+  -fx-background: #333;
+  -fx-border-color: #fff;
+  -fx-cursor: hand;
+}
+
+.tab:selected {
+  -fx-background: #333;
+  -fx-border-color: #fff;
+}
