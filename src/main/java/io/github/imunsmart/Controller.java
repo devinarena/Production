@@ -1,9 +1,13 @@
 package io.github.imunsmart;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-import java.sql.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -16,7 +20,7 @@ import javafx.scene.control.TextField;
 
 /**
  * The main controller class for our JavaFX Production application Currently handles H2 database,
- * SQL and events from our UI
+ * SQL and events from our UI.
  *
  * @author Devin
  * @version 1.0
@@ -61,7 +65,8 @@ public class Controller {
   /**
    * Event when add product button is pressed, inserts values from UI into H2 database using SQL.
    *
-   * @param event ActionEvent to handle, the parameter gives an unused warning but it really should be there
+   * @param event ActionEvent to handle, the parameter gives an unused warning but it really should
+   *              be there
    */
   @FXML
   public void addProduct(@SuppressWarnings("unused") ActionEvent event) {
@@ -118,7 +123,8 @@ public class Controller {
    * Event when record production button is pressed, inserts values from UI into H2 database using
    * SQL.
    *
-   * @param event ActionEvent to handle, the parameter gives an unused warning but it really should be there
+   * @param event ActionEvent to handle, the parameter gives an unused warning but it really should
+   *              be there
    */
   @FXML
   public void recordProduction(@SuppressWarnings("unused") ActionEvent event) {
@@ -126,16 +132,18 @@ public class Controller {
   }
 
   /**
-   * Main initialization method
+   * Main initialization method.
    */
   public void initialize() {
-    connectToDB();
+    connectToDatabase();
 
-    // Product Line - Init the item type choice box, populates with 4 different possible item types and places default
+    // Product Line - Init the item type choice box,
+    // populates with 4 different possible item types and places default
     chbItemType.getItems().addAll("VIDEO", "AUDIO", "MECHANICAL", "MISC");
     chbItemType.getSelectionModel().selectLast();
 
-    // Produce - Init the choose quantity combo box, populates with 1-10 and allows editing and places default
+    // Produce - Init the choose quantity combo box,
+    // populates with 1-10 and allows editing and places default
     final int numItems = 10;
     for (int i = 1; i <= numItems; i++) {
       cmbxChooseQuantity.getItems().add(i);
@@ -146,12 +154,12 @@ public class Controller {
 
   /**
    * Initializes JDBC driver and connects to H2 database, initializes the connection field with URL,
-   * USERNAME and PASSWORD
+   * USERNAME and PASSWORD.
    */
-  private void connectToDB() {
+  private void connectToDatabase() {
     // I had to change all of these to get 0 bugs on findbugs
     final String jdbcDriver = "org.h2.Driver";
-    final String dbURL = "jdbc:h2:./res/ProductionDB";
+    final String dbUrl = "jdbc:h2:./res/ProductionDB";
 
     //  Database credentials
     final String user = "";
@@ -162,7 +170,7 @@ public class Controller {
       Class.forName(jdbcDriver);
 
       // Connect to the database using credentials
-      conn = DriverManager.getConnection(dbURL, user, pass);
+      conn = DriverManager.getConnection(dbUrl, user, pass);
     } catch (ClassNotFoundException | SQLException ex) {
       ex.printStackTrace();
     }

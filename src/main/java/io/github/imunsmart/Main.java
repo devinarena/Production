@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 /**
  * Main entry point class for JavaFX application, loads the fxml file and creates the root and
- * stage
+ * stage.
  *
  * @author Devin Arena
  * @version 1.0
@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
   /**
-   * Start method, loads the fxml file and creates the root and stage
+   * Start method, loads the fxml file and creates the root and stage.
    *
    * @param primaryStage the stage to initialize
    * @throws Exception Multiple methods throw an exception, such as load() IOException, if any are
