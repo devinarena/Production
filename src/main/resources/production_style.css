@@ -1,12 +1,17 @@
+/* Inspect Code gives a warning for every single selector in this file, but they need to be there for styling */
+
+/*noinspection ALL*/
 .root {
   -fx-font-family: Arial Sans-Serif Serif;
   -fx-background-color: #000;
 }
 
+/*noinspection ALL*/
 .tab-pane *.tab-header-area *.tab-header-background {
   -fx-background-color: transparent;
 }
 
+/*noinspection ALL*/
 .tab {
   -fx-background-color: -fx-background;
   -fx-background: #000;
@@ -18,17 +23,21 @@
   -fx-background-radius: 10px;
 }
 
+/*noinspection ALL*/
 .tab-label {
   -fx-text-fill: #fff;
 }
 
+/*noinspection ALL*/
 .tab:hover {
   -fx-background: #333;
   -fx-border-color: #fff;
   -fx-cursor: hand;
 }
 
+/*noinspection ALL*/
 .tab:selected {
   -fx-background: #333;
   -fx-border-color: #fff;
 }
+
