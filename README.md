@@ -1,5 +1,5 @@
 # Production
-Semester long project (Devin Arena)A project that allows you to keep track of products, create new products, and logs production
+Semester long project (Devin Arena) that allows you to keep track of products, create new products, and logs production
 
 ## Alpha Release
 * Added H2 database support
