@@ -10,5 +10,6 @@ Semester long project (Devin Arena) that allows you to keep track of products, c
 * More database functionality
 * More UI functionality
 * So far you can add products using the produce line tab and log production of these items in the produce tab.
+* Functionality is not complete yet and some things are just for testing.
 
 ![Example Image](exampleimage.png)
