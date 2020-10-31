@@ -4,6 +4,7 @@
 .root {
   -fx-font-family: Arial Sans-Serif Serif;
   -fx-background-color: #000;
+  -fx-text-fill: #fff;
 }
 
 /*noinspection ALL*/
