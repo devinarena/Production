@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.collections.FXCollections;
@@ -93,10 +95,7 @@ public class Controller {
 
     Product product = determineProduct(productName, manufacturer, itemType);
 
-    if (product != null && !productLine.contains(product)) {
-      productLine.add(product);
-      lstvwChooseProduct.getItems().add(product.getName());
-
+    if (product != null) {
       try {
         // SQL to insert a product into the DB
         String sql = "INSERT INTO Product(type, manufacturer, name) VALUES ( ?, ?, ? )";
@@ -118,6 +117,8 @@ public class Controller {
         ex.printStackTrace();
       }
     }
+
+    loadProductList();
   }
 
   /**
@@ -130,9 +131,13 @@ public class Controller {
   @FXML
   public void recordProduction(@SuppressWarnings("unused") ActionEvent event) {
     Product product = productLine.get(lstvwChooseProduct.getSelectionModel().getSelectedIndex());
-    ProductionRecord productionRecord = new ProductionRecord(product.getId());
-    productionRun.add(productionRecord);
-    taProductionLog.appendText(productionRecord.toString() + "\n");
+    final int numDigits = 5;
+    final int manufacturerIndex = 3;
+    String serialNumber =
+        product.getManufacturer().substring(0, manufacturerIndex) + product.getType().getCode()
+            + String.format("%0" + numDigits + "d", product.getId());
+    ProductionRecord productionRecord = new ProductionRecord(productionRun.size(), product.getId(),
+        serialNumber, Timestamp.from(Instant.now()));
 
     try {
       // SQL to insert a product into the DB
@@ -158,6 +163,8 @@ public class Controller {
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
+
+    loadProductionLog();
   }
 
   /**
@@ -188,11 +195,12 @@ public class Controller {
 
   /**
    * Initializes the product line table, links it to the observable list.
-   *
-   * @returns void
    */
   private void setupProductLineTable() {
     productLine = FXCollections.observableArrayList();
+
+    TableColumn<Product, Integer> colId = new TableColumn<>("ID");
+    colId.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
 
     TableColumn<Product, String> colName = new TableColumn<>("Name");
     colName.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
@@ -206,6 +214,7 @@ public class Controller {
     TableColumn<Product, ItemType> colType = new TableColumn<>("Type");
     colType.setCellValueFactory(new PropertyValueFactory<Product, ItemType>("type"));
 
+    tblvwExistingProducts.getColumns().add(colId);
     tblvwExistingProducts.getColumns().add(colName);
     tblvwExistingProducts.getColumns().add(colManufacturer);
     tblvwExistingProducts.getColumns().add(colType);
@@ -215,10 +224,11 @@ public class Controller {
   /**
    * Loads the products already inserted into the database at initialization. Also initializes the
    * product ListView.
-   *
-   * @returns void
    */
   private void loadProductList() {
+    productLine.clear();
+    lstvwChooseProduct.getItems().clear();
+
     try {
       String sql = "SELECT * FROM PRODUCT";
 
@@ -226,16 +236,16 @@ public class Controller {
       ResultSet result = statement.executeQuery(sql);
 
       while (result.next()) {
+        int id = result.getInt("ID");
         String name = result.getString("NAME");
         String manufacturer = result.getString("MANUFACTURER");
         ItemType type = ItemType.valueOf(result.getString("TYPE"));
 
         Product product = determineProduct(name, manufacturer, type);
+        product.setId(id);
 
-        if (!productLine.contains(product)) {
-          productLine.add(product);
-          lstvwChooseProduct.getItems().add(product.getName());
-        }
+        productLine.add(product);
+        lstvwChooseProduct.getItems().add(product.getName());
       }
 
       statement.close();
@@ -244,8 +254,16 @@ public class Controller {
     }
   }
 
+  /**
+   * Loads the production log from the database.
+   */
   private void loadProductionLog() {
-    productionRun = new ArrayList<>();
+    if (productionRun == null) {
+      productionRun = new ArrayList<>();
+    } else {
+      productionRun.clear();
+    }
+    taProductionLog.clear();
     try {
       String sql = "SELECT * FROM PRODUCTIONRECORD";
 
@@ -261,7 +279,7 @@ public class Controller {
         ProductionRecord productionRecord = new ProductionRecord(productionNumber, productId,
             serialNumber, dateProduced);
         productionRun.add(productionRecord);
-        taProductionLog.appendText(productionRecord.toString());
+        taProductionLog.appendText(productionRecord.toString() + "\n");
       }
 
       statement.close();
@@ -282,7 +300,7 @@ public class Controller {
   private Product determineProduct(String name, String manufacturer, ItemType type) {
     Product product = null;
     if (type == ItemType.AUDIO || type == ItemType.AUDIOMOBILE) {
-      product = new AudioPlayer(manufacturer, name,
+      product = new AudioPlayer(name, manufacturer,
           "DSD/FLAC/ALAC/WAV/AIFF/MQA/Ogg-Vorbis/MP3/AAC", "M3U/PLS/WPL");
     } else if (type == ItemType.VISUAL || type == ItemType.VISUALMOBILE) {
       // to fix the findbugs error

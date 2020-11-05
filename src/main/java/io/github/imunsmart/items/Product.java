@@ -23,8 +23,8 @@ public abstract class Product implements Item {
    * @param type         item-type of the product
    */
   public Product(String name, String manufacturer, ItemType type) {
-    this.manufacturer = manufacturer;
     this.name = name;
+    this.manufacturer = manufacturer;
     this.type = type;
   }
 
@@ -59,6 +59,15 @@ public abstract class Product implements Item {
   }
 
   /**
+   * The item-type of the product.
+   *
+   * @return the product's item-type
+   */
+  public ItemType getType() {
+    return type;
+  }
+
+  /**
    * Sets the name of the item.
    *
    * @param name the name to set to
@@ -79,12 +88,21 @@ public abstract class Product implements Item {
   }
 
   /**
-   * The item-type of the product.
+   * Sets the ID of the item.
    *
-   * @return the product's item-type
+   * @param id the ID of the item
    */
-  public ItemType getType() {
-    return type;
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  /**
+   * Sets the type of the item.
+   *
+   * @param type the type of the item
+   */
+  public void setType(ItemType type) {
+    this.type = type;
   }
 
   /**

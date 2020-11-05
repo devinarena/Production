@@ -20,14 +20,14 @@ public class AudioPlayer extends Product implements MultimediaControl {
   /**
    * AudioPlayer constructor that invokes product super constructor and initializes fields.
    *
-   * @param manufacturer             the manufacturer of the product
    * @param name                     the name of the product
+   * @param manufacturer             the manufacturer of the product
    * @param supportedAudioFormats    the supported audio formats as a string
    * @param supportedPlaylistFormats the supported playlist formats as a string
    */
-  public AudioPlayer(String manufacturer, String name, String supportedAudioFormats,
+  public AudioPlayer(String name, String manufacturer, String supportedAudioFormats,
       String supportedPlaylistFormats) {
-    super(manufacturer, name, ItemType.AUDIO);
+    super(name, manufacturer, ItemType.AUDIO);
     this.supportedAudioFormats = supportedAudioFormats;
     this.supportedPlaylistFormats = supportedPlaylistFormats;
   }
