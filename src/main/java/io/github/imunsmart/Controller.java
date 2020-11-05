@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -79,6 +80,7 @@ public class Controller {
 
   private ObservableList<Product> productLine;
   private ArrayList<ProductionRecord> productionRun;
+  private HashMap<ItemType, Integer> numCreated;
 
   /**
    * Event when add product button is pressed, inserts values from UI into H2 database using SQL.
@@ -135,10 +137,21 @@ public class Controller {
     final int manufacturerIndex = 3;
     String serialNumber =
         product.getManufacturer().substring(0, manufacturerIndex) + product.getType().getCode()
-            + String.format("%0" + numDigits + "d", product.getId());
+            + String.format("%0" + numDigits + "d", numCreated.getOrDefault(product.getType(), 0));
     ProductionRecord productionRecord = new ProductionRecord(productionRun.size(), product.getId(),
         serialNumber, Timestamp.from(Instant.now()));
 
+    addToProductionDB(productionRecord);
+
+    loadProductionLog();
+  }
+
+  /**
+   * Insers the production record into the database.
+   *
+   * @param productionRecord to insert into the DB.
+   */
+  private void addToProductionDB(ProductionRecord productionRecord) {
     try {
       // SQL to insert a product into the DB
       String sql =
@@ -163,14 +176,13 @@ public class Controller {
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
-
-    loadProductionLog();
   }
 
   /**
    * Main initialization method.
    */
   public void initialize() {
+    numCreated = new HashMap<>();
     setupProductLineTable();
     connectToDatabase();
     loadProductList();
@@ -191,6 +203,8 @@ public class Controller {
     }
     cmbxChooseQuantity.setEditable(true);
     cmbxChooseQuantity.getSelectionModel().selectFirst();
+
+    taProductionLog.setEditable(false);
   }
 
   /**
@@ -263,7 +277,7 @@ public class Controller {
     } else {
       productionRun.clear();
     }
-    taProductionLog.clear();
+    numCreated.clear();
     try {
       String sql = "SELECT * FROM PRODUCTIONRECORD";
 
@@ -276,15 +290,28 @@ public class Controller {
         String serialNumber = result.getString("SERIAL_NUM");
         Date dateProduced = result.getDate("DATE_PRODUCED");
 
-        ProductionRecord productionRecord = new ProductionRecord(productionNumber, productId,
-            serialNumber, dateProduced);
-        productionRun.add(productionRecord);
-        taProductionLog.appendText(productionRecord.toString() + "\n");
+        Product product = getProduct(productId);
+        numCreated.put(product.getType(), numCreated.getOrDefault(product.getType(), 0) + 1);
+
+        productionRun.add(new ProductionRecord(productionNumber, productId,
+            serialNumber, dateProduced));
       }
 
       statement.close();
     } catch (SQLException ex) {
       ex.printStackTrace();
+    }
+
+    showProduction();
+  }
+
+  /**
+   * Logs all of the Production Records onto the Production Log text area.
+   */
+  private void showProduction() {
+    taProductionLog.clear();
+    for (ProductionRecord productionRecord : productionRun) {
+      taProductionLog.appendText(productionRecord.toString() + "\n");
     }
   }
 
@@ -307,17 +334,29 @@ public class Controller {
       final int refreshRate = 40;
       final int responseTime = 22;
       product = new MoviePlayer(name, manufacturer,
-          new Screen("720x480", refreshRate, responseTime),
-          MonitorType.LCD);
+          new Screen("720x480", refreshRate, responseTime), MonitorType.LCD);
     }
     return product;
   }
 
   /**
+   * Gets a product based on its ID.
+   *
+   * @param productId the product's ID
+   * @return the product with the corresponding ID.
+   */
+  private Product getProduct(int productId) {
+    for (Product product : productLine) {
+      if (product.getId() == productId) {
+        return product;
+      }
+    }
+    return null;
+  }
+
+  /**
    * Initializes JDBC driver and connects to H2 database, initializes the connection field with URL,
    * USERNAME and PASSWORD.
-   *
-   * @return void
    */
   private void connectToDatabase() {
     // I had to change all of these to get 0 bugs on findbugs

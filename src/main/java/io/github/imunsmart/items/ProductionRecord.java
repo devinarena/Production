@@ -147,11 +147,6 @@ public class ProductionRecord {
    */
   @Override
   public String toString() {
-    if (product != null) {
-      return "Prod. Num: " + productionNumber + " Product Name: " + product.getName()
-          + " Serial Num: "
-          + serialNumber + " Date: " + produced;
-    }
     return "Prod. Num: " + productionNumber + " Product ID: " + productId + " Serial Num: "
         + serialNumber + " Date: " + produced;
   }
