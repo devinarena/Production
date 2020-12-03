@@ -7,7 +7,10 @@ A full scale production project with database integration, employee login system
 The full java docs are on the github pages page for this repository. You can find them here: [JavaDocs](https://devinarena.github.io/Production/)
 
 ## Class Diagram
-![Class Diagram](/res/classdiagram.png)
+![Class Diagram](res/classdiagram.png)
+
+## Database Diagram
+![Database Diagram](res/databasediagram.png)
 
 ## License
 
