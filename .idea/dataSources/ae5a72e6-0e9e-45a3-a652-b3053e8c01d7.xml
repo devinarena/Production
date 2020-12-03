@@ -178,37 +178,86 @@
       <CacheSize>32</CacheSize>
       <AutoCreated>1</AutoCreated>
     </sequence>
-    <sequence id="164" parent="4" name="SYSTEM_SEQUENCE_A624B23B_FE0D_4FCA_B5E0_80DCC1C78C3E">
+    <sequence id="164" parent="4" name="SYSTEM_SEQUENCE_61E3B13B_4F3D_4C17_95CF_82FFD9465A55">
+      <ObjectId>11</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CacheSize>32</CacheSize>
+      <AutoCreated>1</AutoCreated>
+    </sequence>
+    <sequence id="165" parent="4" name="SYSTEM_SEQUENCE_A624B23B_FE0D_4FCA_B5E0_80DCC1C78C3E">
       <ObjectId>9</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <CacheSize>32</CacheSize>
       <AutoCreated>1</AutoCreated>
     </sequence>
-    <table id="165" parent="4" name="PRODUCT">
+    <table id="166" parent="4" name="EMPLOYEE">
+      <ObjectId>10</ObjectId>
+    </table>
+    <table id="167" parent="4" name="PRODUCT">
       <ObjectId>3</ObjectId>
     </table>
-    <table id="166" parent="4" name="PRODUCTIONRECORD">
-      <ObjectId>8</ObjectId>
+    <table id="168" parent="4" name="PRODUCTIONRECORD">
+      <ObjectId>15</ObjectId>
     </table>
-    <column id="167" parent="165" name="ID">
+    <column id="169" parent="166" name="ID">
       <Position>1</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="168" parent="165" name="NAME">
+    <column id="170" parent="166" name="NAME">
       <Position>2</Position>
       <DataType>VARCHAR|0s</DataType>
     </column>
-    <column id="169" parent="165" name="TYPE">
+    <column id="171" parent="166" name="USERNAME">
       <Position>3</Position>
       <DataType>VARCHAR|0s</DataType>
     </column>
-    <column id="170" parent="165" name="MANUFACTURER">
+    <column id="172" parent="166" name="EMAIL">
       <Position>4</Position>
       <DataType>VARCHAR|0s</DataType>
     </column>
-    <index id="171" parent="165" name="PRIMARY_KEY_1">
+    <column id="173" parent="166" name="PASSWORD">
+      <Position>5</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <index id="174" parent="166" name="EMPLOYEE_ID_UINDEX">
+      <ObjectId>12</ObjectId>
+      <SourceTextLength>78</SourceTextLength>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="175" parent="166" name="PRIMARY_KEY_7">
+      <ObjectId>13</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <SourceTextLength>72</SourceTextLength>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+      <AutoCreated>1</AutoCreated>
+    </index>
+    <key id="176" parent="166" name="EMPLOYEE_PK">
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="177" parent="167" name="ID">
+      <Position>1</Position>
+      <DataType>INT|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="178" parent="167" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <column id="179" parent="167" name="TYPE">
+      <Position>3</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <column id="180" parent="167" name="MANUFACTURER">
+      <Position>4</Position>
+      <DataType>VARCHAR|0s</DataType>
+    </column>
+    <index id="181" parent="167" name="PRIMARY_KEY_1">
       <ObjectId>6</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>71</SourceTextLength>
@@ -216,33 +265,37 @@
       <Unique>1</Unique>
       <AutoCreated>1</AutoCreated>
     </index>
-    <index id="172" parent="165" name="PRODUCT_ID_UINDEX">
+    <index id="182" parent="167" name="PRODUCT_ID_UINDEX">
       <ObjectId>5</ObjectId>
       <SourceTextLength>76</SourceTextLength>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="173" parent="165" name="PRODUCT_PK">
+    <key id="183" parent="167" name="PRODUCT_PK">
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="174" parent="166" name="PRODUCTION_NUM">
+    <column id="184" parent="168" name="PRODUCTION_NUM">
       <Position>1</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="175" parent="166" name="PRODUCT_ID">
+    <column id="185" parent="168" name="PRODUCT_ID">
       <Position>2</Position>
       <DataType>INT|0s</DataType>
     </column>
-    <column id="176" parent="166" name="SERIAL_NUM">
+    <column id="186" parent="168" name="SERIAL_NUM">
       <Position>3</Position>
       <DataType>VARCHAR|0s</DataType>
     </column>
-    <column id="177" parent="166" name="DATE_PRODUCED">
+    <column id="187" parent="168" name="DATE_PRODUCED">
       <Position>4</Position>
       <DataType>DATETIME|0s</DataType>
+    </column>
+    <column id="188" parent="168" name="EMPLOYEE">
+      <Position>5</Position>
+      <DataType>VARCHAR|0s</DataType>
     </column>
   </database-model>
 </dataSource>

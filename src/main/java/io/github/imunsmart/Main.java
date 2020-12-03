@@ -27,8 +27,9 @@ public class Main extends Application {
   public void start(Stage primaryStage) throws Exception {
     // Load the fxml file, create the root and get the controller
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("production.fxml"));
-    Parent root = loader.load();
+    final Parent root = loader.load();
     Controller controller = loader.getController();
+    controller.initialize(primaryStage);
 
     // Setup the primary stage
     primaryStage.setTitle("Production");

@@ -14,8 +14,8 @@ import io.github.imunsmart.items.Product;
  */
 public class MoviePlayer extends Product implements MultimediaControl {
 
-  private Screen screen;
-  private MonitorType monitorType;
+  private final Screen screen;
+  private final MonitorType monitorType;
 
   /**
    * The MoviePlayer constructor which calls the product super constructor and initializes important

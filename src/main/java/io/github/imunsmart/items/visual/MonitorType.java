@@ -9,5 +9,5 @@ package io.github.imunsmart.items.visual;
  */
 public enum MonitorType {
   LCD,
-  LED;
+  LED
 }

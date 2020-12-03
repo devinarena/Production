@@ -5,14 +5,15 @@
   -fx-font-family: Arial Sans-Serif Serif;
   -fx-background-color: #000;
   -fx-text-fill: #fff;
+  -fx-font-size: 16px;
 }
 
-/*noinspection ALL*/
+/*noinspection ALL,CssUnusedSymbol*/
 .tab-pane *.tab-header-area *.tab-header-background {
   -fx-background-color: transparent;
 }
 
-/*noinspection ALL*/
+/*noinspection ALL,CssUnusedSymbol*/
 .tab {
   -fx-background-color: -fx-background;
   -fx-background: #000;
@@ -24,19 +25,19 @@
   -fx-background-radius: 10px;
 }
 
-/*noinspection ALL*/
+/*noinspection ALL,CssUnusedSymbol*/
 .tab-label {
   -fx-text-fill: #fff;
 }
 
-/*noinspection ALL*/
+/*noinspection ALL,CssUnusedSymbol*/
 .tab:hover {
   -fx-background: #333;
   -fx-border-color: #fff;
   -fx-cursor: hand;
 }
 
-/*noinspection ALL*/
+/*noinspection ALL,CssUnusedSymbol*/
 .tab:selected {
   -fx-background: #333;
   -fx-border-color: #fff;

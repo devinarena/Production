@@ -1,9 +1,8 @@
-import io.github.imunsmart.items.ItemType;
-import io.github.imunsmart.items.Product;
+package io.github.imunsmart.items;
 
 /**
- * Widget to test the functionality of a product. Didn't know if this needed to still exist but
- * checkstyle gives an error for it not being in its own file.
+ * Widget to test the functionality of a product. Needs to be in its own file to avoid checkstyle
+ * error.
  *
  * @author Devin Arena
  * @version 1.0

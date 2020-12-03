@@ -14,8 +14,8 @@ import io.github.imunsmart.items.Product;
  */
 public class AudioPlayer extends Product implements MultimediaControl {
 
-  private String supportedAudioFormats;
-  private String supportedPlaylistFormats;
+  private final String supportedAudioFormats;
+  private final String supportedPlaylistFormats;
 
   /**
    * AudioPlayer constructor that invokes product super constructor and initializes fields.

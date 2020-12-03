@@ -1,14 +1,14 @@
 package io.github.imunsmart.items;
 
 /**
- * Product abstract class, top level implementation for product subclasses, contains important
- * information such as name, manufacturer, and item-type which are stored in a database.
+ * Product class, top level implementation for product subclasses, contains important information
+ * such as name, manufacturer, and item-type which are stored in a database.
  *
  * @author Devin Arena
  * @version 1.0
  * @since 10/31/2020
  */
-public abstract class Product implements Item {
+public class Product implements Item {
 
   private int id;
   private ItemType type;

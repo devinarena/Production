@@ -10,15 +10,15 @@ package io.github.imunsmart.items.visual;
  */
 public class Screen implements ScreenSpec {
 
-  private String resolution;
-  private int refreshRate;
-  private int responseTime;
+  private final String resolution;
+  private final int refreshRate;
+  private final int responseTime;
 
   /**
    * The Screen constructor.
    *
-   * @param resolution the resolution of the screen (format: YxZ pixels)
-   * @param refreshRate the refresh rate of the screen
+   * @param resolution   the resolution of the screen (format: YxZ pixels)
+   * @param refreshRate  the refresh rate of the screen
    * @param responseTime the response time of the screen
    */
   public Screen(String resolution, int refreshRate, int responseTime) {
