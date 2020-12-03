@@ -1,4 +1,4 @@
-## Production Project Full Release
+# Production Project Full Release
 
 A full scale production project with database integration, employee login system, product line and production log functionality. With this program you can register as an employee, add products to a product line and record production and view a production log. Employees, products and production records are saved to a database.
 
