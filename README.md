@@ -4,7 +4,7 @@ A full scale production project with database integration, employee login system
 
 # Docs
 
-The full java docs are on the github pages page for this repository.
+The full java docs are on the github pages page for this repository. You can find them here: https://devinarena.github.io/Production/
 
 # License
 
