@@ -1,15 +1,11 @@
-# Production
-Semester long project (Devin Arena) that allows you to keep track of products, create new products, and logs production
+## Production Project Full Release
 
-## Alpha Release
-* Added H2 database support
-* Added function to some of the UI elements
-* So far you can add products using the produce line tab and doing so prints a list of all products to the console
+A full scale production project with database integration, employee login system, product line and production log functionality. With this program you can register as an employee, add products to a product line and record production and view a production log. Employees, products and production records are saved to a database.
 
-## Beta Release
-* More database functionality
-* More UI functionality
-* So far you can add products using the produce line tab and log production of these items in the produce tab.
-* Functionality is not complete yet and some things are just for testing.
+# Docs
 
-![Example Image](exampleimage.png)
+The full java docs are on the github pages page for this repository.
+
+# License
+
+This project is licensed under the MIT License.
