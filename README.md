@@ -12,6 +12,9 @@ The full java docs are on the github pages page for this repository. You can fin
 ## Database Diagram
 ![Database Diagram](res/databasediagram.png)
 
+## Program Example
+![Program Example](res/programexample.gif)
+
 ## License
 
 This project is licensed under the MIT License.
